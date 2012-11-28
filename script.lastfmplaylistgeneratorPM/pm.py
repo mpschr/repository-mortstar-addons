@@ -111,8 +111,8 @@ class MyPlayer( xbmc.Player ) :
 				thumb = fields[5]
 				duration = int(fields[6])
 				print "Found: " + trackTitle + " by: " + artist
-				if (self.allowtrackrepeat == "true" or (self.allowtrackrepeat == "false" and trackPath not in self.addedTracks)):
-					if (self.preferdifferentartist == "false" or (self.preferdifferentartist == "true" and eval(matchValue) < 0.2 and similarArtistName not in foundArtists)):
+				if (self.allowtrackrepeat == 1 or (self.allowtrackrepeat == 0 and trackPath not in self.addedTracks)):
+					if (self.preferdifferentartist == 0 or (self.preferdifferentartist == 1 and eval(matchValue) < 0.2 and similarArtistName not in foundArtists)):
 						listitem = self.getListItem(trackTitle,artist,album,thumb,duration)
 						xbmc.PlayList(0).add(url=trackPath, listitem=listitem)
 						self.addedTracks += [trackPath]

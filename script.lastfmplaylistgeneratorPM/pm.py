@@ -66,7 +66,10 @@ class MyPlayer( xbmc.Player ) :
 				xbmc.PlayList(0).add(url= xbmc.Player().getMusicInfoTag().getURL(), listitem = listitem)
 				self.addedTracks += [xbmc.Player().getMusicInfoTag().getURL()]
 			#print "Start looking for similar tracks"
-			self.fetch_similarTracks(currentlyPlayingTitle,currentlyPlayingArtist)
+			if len(xbmc.PlayList(0)) - xbmc.PlayList(0).getposition() - 1 < 8:
+				self.fetch_similarTracks(currentlyPlayingTitle,currentlyPlayingArtist)
+			else:
+				print "enough songs in queue"
 
 	def onPlayBackStarted(self):
 		print "onPlayBackStarted waiting:  " + str(self.delaybeforesearching) +" seconds"
